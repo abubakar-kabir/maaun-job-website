@@ -1,4 +1,4 @@
-import {useState,UseEffect, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import JobListing from './JobListing';
 import Spinner from './Spinner';
 
@@ -23,7 +23,7 @@ const JobListings = ({isHome = false}) => {
   }
 
   fetchJobs();
- },[]);
+ },[isHome]);
 
   return (
 <section className='bg-blue-50 px-4 py-10'>

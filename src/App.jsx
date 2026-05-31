@@ -12,32 +12,19 @@ import EditJobPage from './pages/EditJobPage';
 import ContactPage from './pages/ContactPage';
 import ApplyJobPage from './pages/ApplyJobPage';
 import ApplicationsPage, { applicationsLoader } from './pages/ApplicationsPage';
+import { api } from './utils/api';
 
 const App = () => {
   const addJob = async (newJob) => {
-    await fetch('/api/jobs', {
-      method: 'POST',
-      headers: {
-        'content-Type': 'application/json',
-      },
-      body: JSON.stringify(newJob),
-    });
+    await api.post('/api/jobs', newJob);
   };
 
   const deleteJob = async (id) => {
-    await fetch(`/api/jobs/${id}`, {
-      method: 'DELETE',
-    });
+    await api.delete(`/api/jobs/${id}`);
   };
 
   const updateJob = async (job) => {
-    await fetch(`/api/jobs/${job.id}`, {
-      method: 'PUT',
-      headers: {
-        'content-Type': 'application/json',
-      },
-      body: JSON.stringify(job),
-    });
+    await api.put(`/api/jobs/${job.id}`, job);
   };
 
   const router = createBrowserRouter([

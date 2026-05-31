@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import { api } from '../utils/api';
 
 const CV_MAX_BYTES = 600 * 1024;
 
@@ -68,11 +69,7 @@ const ApplyJobPage = () => {
         employerNotes: '',
       };
 
-      const res = await fetch('/api/applications', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
+      const res = await api.post('/api/applications', payload);
 
       if (!res.ok) throw new Error('Save failed');
 

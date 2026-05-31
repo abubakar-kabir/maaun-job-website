@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { api } from '../utils/api';
 
 const FIT_OPTIONS = [
   { value: 'pending', label: 'Pending review' },
@@ -25,7 +26,7 @@ function formatDate(iso) {
 // eslint-disable-next-line react-refresh/only-export-components -- route loader
 export async function applicationsLoader() {
   try {
-    const [appsRes, jobsRes] = await Promise.all([fetch('/api/applications'), fetch('/api/jobs')]);
+    const [appsRes, jobsRes] = await Promise.all([api.get('/api/applications'), api.get('/api/jobs')]);
     const applications = appsRes.ok ? await appsRes.json() : [];
     const jobs = jobsRes.ok ? await jobsRes.json() : [];
     return {
@@ -79,11 +80,7 @@ const ApplicationsPage = () => {
       fitAssessment: fitDraft,
     };
     try {
-      const res = await fetch(`/api/applications/${selected.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updated),
-      });
+      const res = await api.put(`/api/applications/${selected.id}`, updated);
       if (!res.ok) throw new Error('Failed');
       setApplications((prev) =>
         prev.map((a) => (String(a.id) === String(selected.id) ? updated : a))

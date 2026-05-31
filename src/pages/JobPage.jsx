@@ -4,6 +4,7 @@ import { FaArrowLeft, FaMapMarker } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
+import { api } from '../utils/api';
 
 
 const JobPage = ({deleteJob}) => {
@@ -130,7 +131,7 @@ md:text-left'>
 };
 
 const jobLoader = async ({params})=>{
-  const res = await fetch(`/api/jobs/${params.id}`);
+  const res = await api.get(`/api/jobs/${params.id}`);
   const data = await res.json();
   return data;
 };

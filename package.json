@@ -4,11 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/dev.mjs",
+    "dev:client": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server --watch src/jobs.json --port 7000"
+    "server": "json-server src/jobs.json --port 7000"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",

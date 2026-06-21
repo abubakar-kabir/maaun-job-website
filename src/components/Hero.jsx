@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Hero = ({title='  Become a Maaun employee', 
-    subtitle='Find the job that fits your skills and needs'}) => {
+const Hero = ({title='  WELCOME ADMINISTRATOR', 
+    subtitle='Review Job Applications'}) => {
   return (
 <section className="bg-blue-700 py-20 mb-4">
 <div
